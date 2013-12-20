@@ -40,15 +40,15 @@ begin
 	csvday = 'artclYomiuriNew' + daystr + '.csv'
 
 	#記事読み込み、CSVにめかぶ形式で保存
-	c = MeCab::Tagger.new(ARGV.join(" "))
+	m = MeCab::Tagger.new(ARGV.join(" "))
 	while j<i
 		CSV.open(csvday,"a+", {:force_quotes => true}) do |csv|
 			arr1 = Nokogiri::HTML(open(urls[j]))
 			arr1.css("div.article-def").each do |node|
 				if /(.+?)）+$/u =~ node.text
-					csv << [c.parse(node.text)]
+					csv << [m.parse(node.text)]
 					#puts node.text
-					#deb = c.parse(node.text)
+					#deb = m.parse(node.text)
 					#puts deb
 					break
 				end
