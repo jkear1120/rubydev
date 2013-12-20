@@ -45,9 +45,9 @@ begin
 			arr1 = Nokogiri::HTML(open(urls[j]))
 			arr1.css("div.article-def").each do |node|
 				if /(.+?)）+$/u =~ node.text
-					#csv << [c.parse(node.text)]
-					puts node.text
-					deb = c.parse(node.text)
+					csv << [c.parse(node.text)]
+					#puts node.text
+					#deb = c.parse(node.text)
 					#puts deb
 					break
 				end
