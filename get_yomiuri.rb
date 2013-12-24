@@ -43,11 +43,12 @@ begin
 	while j<i
 		CSV.open(csvday,"a+", {:force_quotes => true}) do |csv|
 			arr1 = Nokogiri::HTML(open(urls[j]))
-			arr1.css("div.article-def").each do |node|
+			arr1.xpath('p').each do |node|
+				p node.text
 				if /(.+?)）+$/u =~ node.text
 					csv << [m.parse(node.text)]
 					#puts node.text
-					#deb = m.parse(node.text)
+					#deb = node.text
 					#puts deb
 					break
 				end
